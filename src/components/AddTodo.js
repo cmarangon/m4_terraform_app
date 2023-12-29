@@ -6,9 +6,11 @@ const AddTodo = () => {
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
 
+  const apiUrl = `http://${window.location.hostname}:5001/api/v1/todo`;
+
   const saveProduct = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5001/api/v1/todo", {
+    await axios.post(apiUrl, {
       title
     });
     navigate("/");

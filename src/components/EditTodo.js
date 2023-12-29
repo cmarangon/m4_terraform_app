@@ -7,10 +7,12 @@ const EditTodo = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const apiUrl = `http://${window.location.hostname}:5001/api/v1/todo`;
+
   useEffect(() => {
     const getTodoById = async () => {
       const response = await axios.get(
-        `http://localhost:5001/api/v1/todo/${id}`
+        `${apiUrl}/${id}`
       );
       setTitle(response.data.data.title);
     };
@@ -20,7 +22,7 @@ const EditTodo = () => {
   const updateTodo = async (e) => {
     e.preventDefault();
     await axios.put(
-      `http://localhost:5001/api/v1/todo/${id}`,
+      `${apiUrl}/${id}`,
       {
         title: title,
       },

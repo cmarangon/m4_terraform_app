@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import useSWR, { mutate } from "swr";
 
 const TodoList = () => {
+  const apiUrl = `http://${window.location.hostname}:5001/api/v1/todo`;
+
   const fetcher = async () => {
-    const response = await axios.get("http://localhost:5001/api/v1/todos");
+    const response = await axios.get(`${apiUrl}s`);
     return response.data.data;
   };
 
@@ -16,7 +18,7 @@ const TodoList = () => {
   }
 
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:5001/api/v1/todo/${id}`);
+    await axios.delete(`${apiUrl}/${id}`);
     mutate("todos");
   };
 
